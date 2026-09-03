@@ -2,7 +2,7 @@
 The TECQA evaluation harness (docs/EVAL_DESIGN.md).
 
     data.py     dataset loading + stratified nested sampling
-    metrics.py  Hits@1, the Appendix D recalls, McNemar
+    metrics.py  Hits@1, the Appendix D recalls, paired agreement counts
     record.py   the results/ writer every run shares (TEAM_PLAN H3)
     variants.py language / ablation / hyperparameter / backbone variants
     run_eval.py the single CLI entry point

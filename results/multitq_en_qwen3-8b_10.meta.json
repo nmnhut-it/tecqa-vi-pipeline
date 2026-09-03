@@ -1,0 +1,14 @@
+{
+  "dataset": "multitq",
+  "lang": "en",
+  "model": "qwen/qwen3-8b",
+  "n": 10,
+  "k": 40,
+  "n_implicit": 2,
+  "ablation": "",
+  "label": "MultitqEnPilot",
+  "hits_at_1": 0.5,
+  "n_scored": 10,
+  "git_commit": "unknown (imported from tecqa_vi/eval_results_english.json)",
+  "created_at": "2026-08-05T00:00:00+00:00"
+}

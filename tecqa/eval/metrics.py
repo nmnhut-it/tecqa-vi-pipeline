@@ -15,13 +15,12 @@ Metrics:
     answer_recall    Appendix D: gold answer present in a fact set.
     anchor_recall    Appendix D: gold temporal anchor present in a fact set.
     chain_recall     Appendix D: both present at once.
-    mcnemar_exact    paired significance for the VI-vs-EN comparison.
+    discordant_pairs how two runs over the same questions agree and disagree.
 
 Input:  fact tuples (s, p, o, t) and result rows (results/README.md schema).
 Output: bools, and (hits, total) pairs for breakdowns.
 """
 from collections import defaultdict
-from math import comb
 
 from .. import config
 from ..utils.timeutil import (GRANULARITY_DAY, GRANULARITY_MONTH, GRANULARITY_YEAR,
@@ -131,29 +130,25 @@ def meta_rate_where(rows, meta_key: str, condition_key: str) -> tuple:
     return meta_rate(eligible, meta_key), len(eligible)
 
 
-def _binomial_tail(discordant: int, smaller: int) -> float:
-    """Two-sided exact binomial p under p=0.5, summing both tails."""
-    tail = sum(comb(discordant, i) for i in range(smaller + 1))
-    return min(1.0, 2.0 * tail / (2 ** discordant))
+def discordant_pairs(rows_a, rows_b, metric: str = "hit") -> dict:
+    """How two runs over the SAME questions agree and disagree, question by
+    question.
 
+    Returns {n_paired, only_a, only_b, agree}. This is the raw count the error
+    analysis argues over: two conditions can post near-identical aggregates
+    while disagreeing on a large share of individual questions, and only the
+    join shows it.
 
-def mcnemar_exact(rows_a, rows_b, metric: str = "hit") -> dict:
-    """Paired significance for two runs over the SAME questions.
-
-    The VI-vs-EN gap is the paper's central claim and both conditions run the
-    same sample, so the honest test is McNemar over the discordant pairs, not a
-    two-proportion test that pretends the samples are independent.
-
-    Returns {n_paired, only_a, only_b, p_value}; p_value is 1.0 when nothing
-    disagrees. Input: two lists of result rows keyed by qid.
+    No significance test is computed here on purpose. An earlier version ran
+    McNemar's exact test; the paper now reports the counts instead, so the
+    machinery for a p-value nobody prints was removed rather than left to rot.
     """
     by_qid_b = {row["qid"]: row for row in rows_b}
     paired = [(a, by_qid_b[a["qid"]]) for a in rows_a if a["qid"] in by_qid_b]
     only_a = sum(1 for a, b in paired if a.get(metric) and not b.get(metric))
     only_b = sum(1 for a, b in paired if b.get(metric) and not a.get(metric))
-    discordant = only_a + only_b
-    p_value = 1.0 if discordant == 0 else _binomial_tail(discordant, min(only_a, only_b))
-    return {"n_paired": len(paired), "only_a": only_a, "only_b": only_b, "p_value": p_value}
+    return {"n_paired": len(paired), "only_a": only_a, "only_b": only_b,
+            "agree": len(paired) - only_a - only_b}
 
 
 def abstained(row) -> bool:

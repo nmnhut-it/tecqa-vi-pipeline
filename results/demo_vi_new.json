@@ -1,0 +1,149 @@
+{
+  "generated_at": "2026-08-27T03:29:10+00:00",
+  "model_extract": "google/gemini-2.5-flash",
+  "model_reason": "qwen/qwen3-8b",
+  "embed_model": "BAAI/bge-base-en-v1.5",
+  "k_neighbors": 40,
+  "n_implicit": 2,
+  "kg_facts": 461329,
+  "spent_usd": 0.00874,
+  "questions": [
+    {
+      "question": "Ai đã đến thăm Iraq vào tháng 1 năm 2006?",
+      "pred": [
+        "Defense_/_Security_Ministry_(Denmark)"
+      ],
+      "meta": {
+        "main_entity": "Iraq",
+        "subgraph_size": 2130,
+        "chain_size": 160,
+        "mentions": [
+          "Iraq"
+        ],
+        "grounded": [
+          "Iraq"
+        ],
+        "relation_phrase": "Make a visit",
+        "relation_id": "Make_a_visit",
+        "relation_ids": [
+          "Make_a_visit",
+          "Host_a_visit"
+        ],
+        "relation_sim": 1.0000001192092896,
+        "main_entity_raw": "Iraq",
+        "n_explicit_anchors": 1,
+        "n_implicit_anchors": 1,
+        "n_anchors": 2,
+        "parse_ok": true,
+        "raw_len": 41,
+        "prompt_style": "paper",
+        "abstain_retry": false,
+        "lang": "vi",
+        "ablation": "",
+        "k": 40,
+        "n_implicit": 2,
+        "model": "qwen/qwen3-8b"
+      },
+      "chain_preview": [
+        "[Iraq, Host_a_visit, Ministry_(Belgium), 2009-06-04]",
+        "[Ministry_(Belgium), Make_a_visit, Iraq, 2009-06-04]",
+        "[Iraq, Host_a_visit, Peter_Pace, 2005-12-31]",
+        "[Iraq, Make_a_visit, Kuwait, 2009-06-05]",
+        "[Kuwait, Host_a_visit, Iraq, 2009-06-05]"
+      ],
+      "chain_shown": 5
+    },
+    {
+      "question": "Trước Trung Quốc, Nhật Bản muốn hợp tác kinh tế với quốc gia nào?",
+      "pred": [
+        "Iran"
+      ],
+      "meta": {
+        "main_entity": "Japan",
+        "subgraph_size": 4102,
+        "chain_size": 1065,
+        "mentions": [
+          "China",
+          "Japan"
+        ],
+        "grounded": [
+          "China",
+          "Japan"
+        ],
+        "relation_phrase": "Express intent to cooperate economically",
+        "relation_id": "Express_intent_to_cooperate_economically",
+        "relation_ids": [
+          "Express_intent_to_cooperate_economically",
+          "Express_intent_to_cooperate"
+        ],
+        "relation_sim": 1.0,
+        "main_entity_raw": "Japan",
+        "n_explicit_anchors": 0,
+        "n_implicit_anchors": 2,
+        "n_anchors": 2,
+        "parse_ok": true,
+        "raw_len": 8,
+        "prompt_style": "paper",
+        "abstain_retry": false,
+        "lang": "vi",
+        "ablation": "",
+        "k": 40,
+        "n_implicit": 2,
+        "model": "qwen/qwen3-8b"
+      },
+      "chain_preview": [
+        "[China, Express_intent_to_cooperate, Vietnam, 2005-03-04]",
+        "[China, Express_intent_to_cooperate, Vietnam, 2005-03-08]",
+        "[Mexico, Express_intent_to_cooperate_economically, Japan, 2005-03-08]",
+        "[Vietnam, Express_intent_to_cooperate, China, 2005-03-04]",
+        "[Vietnam, Express_intent_to_cooperate, China, 2005-03-08]"
+      ],
+      "chain_shown": 5
+    },
+    {
+      "question": "Sau năm 2010, Hàn Quốc đã kêu gọi ai đàm phán?",
+      "pred": [
+        "Japan"
+      ],
+      "meta": {
+        "main_entity": "South_Korea",
+        "subgraph_size": 1111,
+        "chain_size": 122,
+        "mentions": [
+          "South Korea"
+        ],
+        "grounded": [
+          "South_Korea"
+        ],
+        "relation_phrase": "Engage in negotiation",
+        "relation_id": "Engage_in_negotiation",
+        "relation_ids": [
+          "Engage_in_negotiation",
+          "Demand_meeting,_negotiation"
+        ],
+        "relation_sim": 1.0000001192092896,
+        "main_entity_raw": "South Korea",
+        "n_explicit_anchors": 1,
+        "n_implicit_anchors": 2,
+        "n_anchors": 3,
+        "parse_ok": true,
+        "raw_len": 9,
+        "prompt_style": "paper",
+        "abstain_retry": false,
+        "lang": "vi",
+        "ablation": "",
+        "k": 40,
+        "n_implicit": 2,
+        "model": "qwen/qwen3-8b"
+      },
+      "chain_preview": [
+        "[South_Korea, Engage_in_negotiation, Vietnam, 2009-11-17]",
+        "[South_Korea, Engage_in_negotiation, Vietnam, 2010-07-06]",
+        "[Vietnam, Engage_in_negotiation, South_Korea, 2009-11-17]",
+        "[Vietnam, Engage_in_negotiation, South_Korea, 2010-07-06]",
+        "[France, Engage_in_negotiation, South_Korea, 2010-01-09]"
+      ],
+      "chain_shown": 5
+    }
+  ]
+}
